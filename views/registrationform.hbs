@@ -1,0 +1,89 @@
+{{#ifEquals mode "create"}}
+<form class="form-signin" 
+   style="margin-left:300px; margin-right:300px; margin-top:100px"; 
+   action="/newuser/upload" method="POST">
+   <h1>New user signup</h1>
+   {{else}}
+<form class="form-signin" 
+   style="margin-left:300px; margin-right:300px; margin-top:100px"; 
+   action="/newuser/edit/{{user._id}}" method="POST">
+   <h1>Edit user Details</h1>
+   {{/ifEquals}}
+   {{#ifEquals mode "create"}}
+   <div class="form-group">
+      <label for="exampleInputEmail1">Email Id</label>
+      <input type="email" name="emailid" class="form-control" id="exampleInputEmail1"
+         aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+   </div>
+   {{else}}
+   <div class="form-group">
+      <label for="exampleInputEmail1">Email Id</label>
+      <input type="email" name="emailid" class="form-control" id="exampleInputEmail1"
+         aria-describedby="emailHelp" value="{{user.email}}">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+   </div>
+   {{/ifEquals}}
+   {{#ifEquals mode "create"}}
+   <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+   </div>
+   {{else}}
+   <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" 
+         id="exampleInputPassword1" value="{{user.password}}">
+   </div>
+   {{/ifEquals}}
+   {{#ifEquals mode "create"}}
+   <div class="form-group">
+      <label for="text">Name</label>
+      <input type="text" name="name" class="form-control" >
+   </div>
+   {{else}}
+   <div class="form-group">
+      <label for="text">Name</label>
+      <input type="text" name="name" class="form-control" value="{{user.name}}">
+   </div>
+   {{/ifEquals}}
+   {{#ifEquals mode "create"}} 
+   <div class="form-group">
+      <label for="text">Occupation</label>
+      <input type="text" name="occupation" class="form-control" >
+   </div>
+   {{else}}
+   <div class="form-group">
+      <label for="text">Occupation</label>
+      <input type="text" name="occupation" class="form-control" value="{{user.occupation}}">
+   </div>
+   {{/ifEquals}}
+   {{#ifEquals mode "create"}}
+   <div class="form-group">
+      <label for="number">age</label>
+      <input type="number" name="age" class="form-control" >
+   </div>
+   {{else}}
+   <div class="form-group">
+      <label for="number">age</label>
+      <input type="number" name="age" class="form-control" value="{{user.age}}">
+   </div>
+   {{/ifEquals}}
+   <!-- <div>
+      <label>Upload profile picture</label>
+      <br>
+      <input name='myimage' name="profilepic" type="file" placeholder='add the filename you want'>  
+      
+      <br><br>
+      
+      <button class="btn btn-lg btn-primary btn-sm" type="submit">Upload file</button>
+      </div>-->
+   <br>
+   {{#ifEquals mode "create"}}
+   <button type="submit" class="btn btn-lg btn-primary" style="width: 200px;">Submit</button>
+   {{else}}
+   <button type="submit" class="btn btn-lg btn-primary" style="width: 200px;">Submit</button>
+   {{/ifEquals}}
+   <p class="mt-5 mb-3 text-muted">&copy; Threeplus</p>
+</form>
+

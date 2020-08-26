@@ -1,0 +1,115 @@
+<!--once the username and password is authenticated greet the user and
+   with the help of multer give a functionality of uploading a file -->
+<form class="form-signin" action="/newuser/form/new">
+   <div class="heading-holder">
+      <li class="list-group list-group-flush">
+         <h2 class="h3 mb-3 font-weight-normal">Welcome user</h2>
+         <button class="btn btn-lg btn-primary btn-block" type="submit">New user</button>
+         
+
+      </li>
+   </div>
+
+   
+      
+
+      <div class="container">
+      <hr class="lb_separator">
+      <div class="UserTable">
+         <table id="UserDataTable" class="table table-bordered table-sm">
+            <thead>
+               <tr>
+                  <th>User id</th>
+                  <th>Name</th>
+                  <th>Email ID</th>
+                  <th>Age</th>
+                  <th>Actions</th>
+
+
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>User id</td>
+                  <td>Name</td>
+                  <td>Email ID</td>
+                  <td>Age</td>
+                  
+                  
+
+               </tr>
+            </tbody>
+         </table>
+         <!--   <ul class="list-group list-group-flush">
+            <div>
+            {{#each users}}
+            <li class="list-group-item">
+                <a class="username" name="userName" >{{name}}</a>
+                <a class="h5 mb-3" 
+                style="margin-left:320px" href="/newuser/form?userid={{_id}}">Edit</a>
+            </li>
+            {{/each}}
+            </ul>
+            -->
+      </div>
+   </div>
+   <p class="mt-5 mb-3 text-muted">&copy; Threeplus</p>
+</form>
+<!--<form class="form-signin" action="/upload" method="POST" enctype="multipart/form-data">
+   <h2 class="h3 mb-3 font-weight-normal">Welcome user</h2>
+   <input name='myimage' type="file" placeholder='add the filename you want'>  
+   <button class="btn btn-lg btn-primary btn-block" type="submit">Upload file</button>
+   <p class="mt-5 mb-3 text-muted">&copy; Threeplus</p>
+   </form>-->
+
+<div class="excel_modal" id="excelModal">
+
+   <form class="excelForm" id="excelForm" method="POST" enctype="multipart/form-data" action="newuser/importUsers">
+      <div>
+         <input type="file" class="form-control-file" id="excelFile" name="excelFile" accept=".xls,.xlsx,.csv" required>
+         <button type="submit" class="btn btn-danger lb_button" style="margin-top: 50px;">Import user</button>
+      </div>
+   </form>
+</div>
+
+
+
+<script>
+   jQuery(document).ready(function() {
+    $(document).ready(function(){
+      var UserDataTable = $('#UserDataTable').DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "processing": true,
+            "serverSide": true,
+            'ajax': {
+                'type': 'POST',
+                'url': '/UsersList'
+            },
+            'columns':
+            [
+                { 'data': 'id', "defaultContent": "", 'name': 'User id' },
+                { 'data': 'name', "defaultContent": "", 'name': 'Name' },
+                { 'data': 'email', "defaultContent": "", 'name': 'Email id' },
+                { 'data': 'age', "defaultContent": "", 'name': 'Age' }
+                
+            ],
+            "columnDefs": 
+            [
+               {
+                  render: function (data, type, row) 
+                  {
+                     tag = '<a href="/newuser/form/'+row.id+'">Edit </a>';  
+                     return tag
+                  },
+                     "targets": 4
+               },
+               {                  
+                  "searchable": false,
+                  "orderable": false,
+               },
+            ]
+      })
+    })
+   });
+</script>
